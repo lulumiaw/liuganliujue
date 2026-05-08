@@ -1,224 +1,163 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>六感六覺作文練習</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-:root{--cream:#FFF8F0;--pink:#FFD6D6;--yellow:#FFF3C4;--green:#D4EDDA;--text-dark:#3D2B1F;--text-mid:#6B4C3B;--text-soft:#9B7C6E;--btn:#F4845F;--btn2:#E0694A;}
-html,body{font-family:'PingFang TC','Heiti TC',sans-serif;background:var(--cream);color:var(--text-dark);min-height:100vh}
-#app{max-width:680px;margin:0 auto;padding:14px 12px 30px}
-.header{text-align:center;padding:10px 0 6px}
-.header h1{font-size:21px;font-weight:700;letter-spacing:2px}
-.header p{font-size:12px;color:var(--text-soft);margin-top:4px}
-.score-bar{display:flex;justify-content:space-between;align-items:center;background:#fff;border-radius:20px;padding:7px 16px;margin:8px 0 10px;border:1.5px solid #FFD6D6;font-size:13px;color:var(--text-mid)}
-.score-badge{background:var(--yellow);border-radius:12px;padding:2px 12px;font-weight:700;color:#7A5C00}
-.picture-card{background:#fff;border-radius:22px;border:2.5px solid #FFD6D6;padding:16px;text-align:center;margin-bottom:10px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-height:165px}
-.cat-tag{font-size:11px;background:var(--yellow);color:#7A5C00;border-radius:10px;padding:2px 10px;position:absolute;top:11px;left:14px;font-weight:600}
-.subj-emoji{font-size:66px;line-height:1.1;display:block}
-.subj-name{font-size:20px;font-weight:700}
-.subj-zhuyin{font-size:12px;color:var(--text-soft)}
-.next-btn{background:#fff;border:1.5px solid #ccc;border-radius:12px;padding:4px 12px;font-size:12px;cursor:pointer;color:var(--text-mid);position:absolute;top:11px;right:14px;font-family:inherit;touch-action:manipulation}
-.steps{display:flex;align-items:center;justify-content:center;gap:6px;margin:4px 0 10px}
-.step{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--text-soft)}
-.sdot{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;border:2px solid #ddd;background:#fff;color:#ccc;transition:.2s}
-.sdot.done{background:#4CAF50;border-color:#4CAF50;color:#fff}
-.sdot.cur{background:var(--btn);border-color:var(--btn);color:#fff}
-.sec-label{font-size:13px;font-weight:700;color:var(--text-mid);margin:0 0 7px;padding-left:2px}
-.sense-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:10px}
-.sense-btn{border:none;border-radius:14px;padding:9px 4px 8px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;font-family:inherit;transition:.1s;touch-action:manipulation;position:relative}
-.sense-btn.sel{box-shadow:0 0 0 3px var(--btn)}
-.sense-btn.maxed{opacity:.38;pointer-events:none}
-.sicon{font-size:19px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.75)}
-.sname{font-size:12px;font-weight:700}
-.hbtn{width:100%;border:none;border-radius:14px;padding:11px 14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;font-family:inherit;touch-action:manipulation;background:var(--yellow)}
-.hbtn.sel{box-shadow:0 0 0 3px var(--btn)}
-.slots-panel{background:#fff;border-radius:18px;border:2px solid #A5D6A7;padding:12px 14px;margin-bottom:10px}
-.slot-row{display:flex;align-items:center;gap:6px;margin-bottom:8px}
-.slot-lbl{font-size:12px;font-weight:700;min-width:45px}
-.slot-ph{background:#F5F5F5;border:1.5px dashed #ccc;border-radius:10px;padding:5px 11px;font-size:13px;color:#bbb;flex:1}
-.slot-filled{background:var(--green);border-radius:10px;padding:5px 11px;font-size:13px;font-weight:700;display:flex;justify-content:space-between;flex:1;cursor:pointer}
-.hint-panel{background:#fff;border-radius:16px;border:1.5px dashed #FFB74D;padding:10px 12px;margin-bottom:10px;min-height:80px}
-.hlabel{font-size:11px;color:var(--text-soft);margin-bottom:6px}
-.hchips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{border-radius:10px;padding:6px 12px;font-size:13px;cursor:pointer;background:#FFF3C4;color:#5A4000;border:1.5px solid transparent}
-.chip:active{border-color:var(--btn)}
-.sent-box{background:#fff;border-radius:16px;border:2px solid #BBDEFB;padding:11px 14px;margin-bottom:9px}
-.sent-preview{font-size:17px;font-weight:500;line-height:1.8;min-height:36px}
-.blank{color:#ccc;font-style:italic}
-.controls{display:flex;gap:7px}
-.sub-btn{padding:12px 16px;border-radius:14px;border:none;background:#4CAF50;color:#fff;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;flex:1}
-.sub-btn:disabled{background:#ccc}
-.modal-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:100;align-items:center;justify-content:center;padding:16px}
-.modal-ov.show{display:flex}
-.modal{background:#fff;border-radius:22px;padding:24px 18px;max-width:340px;width:100%;text-align:center}
-.mbtn{background:var(--btn);color:#fff;border:none;border-radius:13px;padding:11px 24px;font-size:15px;font-weight:700;cursor:pointer;margin-top:10px}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>六感六覺作文練習</title>
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+        :root{--cream:#FFF8F0;--pink:#FFD6D6;--yellow:#FFF3C4;--green:#D4EDDA;--text-dark:#3D2B1F;--text-mid:#6B4C3B;--text-soft:#9B7C6E;--btn:#F4845F;}
+        body{font-family:'PingFang TC','Heiti TC',sans-serif;background:var(--cream);color:var(--text-dark);padding:15px}
+        #app{max-width:600px;margin:0 auto}
+        .card{background:#fff;border-radius:20px;padding:20px;text-align:center;border:2px solid var(--pink);margin-bottom:15px;position:relative}
+        .subj-emoji{font-size:60px;display:block}
+        .subj-name{font-size:24px;font-weight:bold}
+        .sense-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:15px 0}
+        .sense-btn{padding:10px;border-radius:12px;border:none;cursor:pointer;background:#eee;font-weight:bold}
+        .sense-btn.sel{background:var(--btn);color:#fff}
+        .slots{background:#fff;border-radius:15px;padding:15px;border:2px solid var(--green);margin-bottom:15px}
+        .slot-row{margin-bottom:8px;font-size:15px}
+        .chip-area{background:#fff;border:1.5px dashed #FFB74D;border-radius:15px;padding:12px;margin-bottom:15px}
+        .chip{display:inline-block;padding:8px 12px;background:var(--yellow);border-radius:10px;margin:4px;cursor:pointer;font-size:14px}
+        .preview{background:#fff;border-radius:15px;padding:15px;border:2px solid #BBDEFB;min-height:60px;font-size:18px;line-height:1.6}
+        .sub-btn{width:100%;padding:15px;border-radius:15px;border:none;background:#4CAF50;color:#fff;font-size:18px;font-weight:bold;margin-top:15px;cursor:pointer}
+        .sub-btn:disabled{background:#ccc}
+        .next-btn{position:absolute;top:10px;right:10px;padding:5px 10px;border-radius:8px;border:1px solid #ddd;background:#fff;font-size:12px}
+    </style>
 </head>
 <body>
-<div id="app">
-  <div class="header">
-    <h1>🌟 六感作文練習 🌟</h1>
-    <p>選選看，你會怎麼描寫它？</p>
-  </div>
-  <div class="score-bar">
-    <span>已完成句子</span>
-    <span class="score-badge" id="score-display">0 句 ⭐</span>
-  </div>
-  <div class="picture-card">
-    <span class="cat-tag" id="cat-tag">載入中...</span>
-    <button class="next-btn" onclick="nextSubject()">換一題 ↻</button>
-    <span class="subj-emoji" id="subj-emoji">❓</span>
-    <div class="subj-name" id="subj-name">載入中...</div>
-    <div class="subj-zhuyin" id="subj-zhuyin"></div>
-  </div>
-  <div class="steps">
-    <div class="step"><div class="sdot cur" id="dot1">1</div><span>感官</span></div>
-    <div class="step"><div class="sdot" id="dot2">2</div><span>心覺</span></div>
-    <div class="step"><div class="sdot" id="dot3">3</div><span>寫作</span></div>
-  </div>
-  <div class="sec-label">① 選兩項感官：</div>
-  <div class="sense-grid" id="sense-grid"></div>
-  <div class="sec-label">② 選一項心覺：</div>
-  <div class="heart-row"><button class="hbtn" id="hbtn" onclick="toggleHeart()">💖 心覺 (必選)</button></div>
-  <div class="slots-panel" id="slots-panel" style="display:none">
-    <div class="sec-label">③ 填入語詞：</div>
-    <div id="slot-rows"></div>
-  </div>
-  <div class="hint-panel">
-    <div class="hlabel" id="hlabel">點選感官按鈕後，這裡會出現建議語詞</div>
-    <div class="hchips" id="hchips"></div>
-  </div>
-  <div class="sent-box">
-    <div class="sent-preview" id="sent-preview"><span class="blank">請先選擇感覺並填寫語詞...</span></div>
-  </div>
-  <div class="controls">
-    <button class="sub-btn" id="sub-btn" onclick="submitSentence()" disabled>完成練習 ✓</button>
-  </div>
-</div>
 
-<div class="modal-ov" id="modal">
-  <div class="modal">
-    <h2>🎉 太棒了！</h2>
-    <div style="margin:15px 0; font-size:18px; line-height:1.6;" id="msent"></div>
-    <button class="mbtn" onclick="closeModal()">下一題 →</button>
-  </div>
+<div id="app">
+    <div style="text-align:center;margin-bottom:10px"><h1>🌟 六感作文練習 🌟</h1></div>
+    
+    <div class="card">
+        <button class="next-btn" onclick="nextSubject()">換一題 ↻</button>
+        <span class="subj-emoji" id="e">🌹</span>
+        <div class="subj-name" id="n">玫瑰花</div>
+        <div id="z" style="color:#999;font-size:14px">ㄇㄟˊ ㄍㄨㄟ ㄏㄨㄚ</div>
+    </div>
+
+    <div style="font-weight:bold;margin-bottom:5px">1. 選兩項感官 + 心覺：</div>
+    <div class="sense-grid" id="btns"></div>
+    <div id="hbtn-area" style="margin-bottom:15px">
+        <button class="sense-btn" id="hb" style="width:100%" onclick="toggleHeart()">💖 心覺 (必選)</button>
+    </div>
+
+    <div class="slots" id="slot-panel" style="display:none">
+        <div style="font-weight:bold;margin-bottom:10px">2. 點選下方詞語填入：</div>
+        <div id="slot-list"></div>
+    </div>
+
+    <div class="chip-area">
+        <div id="hlabel" style="font-size:12px;color:#666;margin-bottom:5px">請先點選感官...</div>
+        <div id="chips"></div>
+    </div>
+
+    <div class="preview" id="pv">句子預覽會在這裡出現...</div>
+    <button class="sub-btn" id="sb" onclick="alert('太棒了！你完成了一句：\n' + document.getElementById('pv').innerText)" disabled>完成練習 ✓</button>
 </div>
 
 <script>
-const SM={1:{name:"視覺",icon:"👁️",color:"#D4EDDA"},2:{name:"聽覺",icon:"👂",color:"#DBEAFE"},3:{name:"嗅覺",icon:"👃",color:"#FEF9C3"},4:{name:"味覺",icon:"👅",color:"#FCE4EC"},5:{name:"觸覺",icon:"✋",color:"#EDE7F6"},6:{name:"心覺",icon:"💖",color:"#FFE0B2"}};
-const SUBJECTS=[
-  {name:"玫瑰花",z:"ㄇㄟˊ ㄍㄨㄟ ㄏㄨㄚ",cat:"植物",e:"🌹",data:{1:[{w:"紅通通的",t:"adj"}],3:[{w:"香噴噴的",t:"adj"}],5:[{w:"刺刺的",t:"adj"}]}},
-  {name:"草莓",z:"ㄘㄠˇ ㄇㄟˊ",cat:"水果",e:"🍓",data:{1:[{w:"亮紅色的",t:"adj"}],3:[{w:"甜香的",t:"adj"}],4:[{w:"酸酸甜甜的",t:"adj"}]}},
-  {name:"月亮",z:"ㄩㄝˋ ㄌㄧㄤˋ",cat:"自然",e:"🌙",data:{1:[{w:"彎彎的",t:"adj"},{w:"銀色的",t:"adj"}],2:[{w:"靜悄悄的",t:"env"}]}},
-  {name:"鯨魚",z:"ㄐㄧㄥ ㄩˊ",cat:"動物",e:"🐋",data:{1:[{w:"巨大的",t:"adj"}],2:[{w:"噴水聲嘶嘶叫",t:"adj"}],5:[{w:"光滑的",t:"adj"}]}},
-  {name:"熱牛奶",z:"ㄖㄜˋ ㄋㄧㄡˊ ㄋㄞˇ",cat:"食物",e:"🥛",data:{3:[{w:"濃濃奶香",t:"adj"}],4:[{w:"暖呼呼的",t:"adj"}],5:[{w:"溫熱的",t:"adj"}]}}
+const SENSES = {
+    1:{n:"視覺",i:"👁️"}, 2:{n:"聽覺",i:"👂"}, 3:{n:"嗅覺",i:"👃"}, 
+    4:{n:"味覺",i:"👅"}, 5:{n:"觸覺",i:"✋"}, 6:{n:"心覺",i:"💖"}
+};
+const SUBJECTS = [
+    {n:"玫瑰花",z:"ㄇㄟˊ ㄍㄨㄟ ㄏㄨㄚ",e:"🌹",d:{1:[{w:"紅紅的"}],3:[{w:"香噴噴的"}],5:[{w:"刺刺的"}]}},
+    {n:"草莓",z:"ㄘㄠˇ ㄇㄟˊ",e:"🍓",d:{1:[{w:"亮紅色的"}],4:[{w:"酸酸甜甜的"}],3:[{w:"有果香的"}]}},
+    {n:"月亮",z:"ㄩㄝˋ ㄌㄧㄤˋ",e:"🌙",d:{1:[{w:"彎彎的"},{w:"金黃色的"}],2:[{w:"安安靜靜的"}]}},
+    {n:"鯨魚",z:"ㄐㄧㄥ ㄩˊ",e:"🐋",d:{1:[{w:"巨大的"}],5:[{w:"光滑的"}],2:[{w:"發出嗚嗚聲的"}]}}
 ];
-const CH6=[{w:"讓我覺得很幸福",t:"h"},{w:"我好喜歡它",t:"h"},{w:"讓我心跳加快",t:"h"}];
+const CH6 = [{w:"讓我覺得很開心"},{w:"我好喜歡它"},{w:"我覺得好神奇"}];
 
-let CS=null, sel5=[], heartOn=false, slots={}, slotTypes={}, score=0;
+let CS=null, sel=[], heartOn=false, slots={};
 
 function init(){
-  const g=document.getElementById('sense-grid');
-  [1,2,3,4,5].forEach(id=>{
-    const b=document.createElement('button');
-    b.className='sense-btn'; b.style.background=SM[id].color;
-    b.innerHTML=`<div class="sicon">${SM[id].icon}</div><div class="sname">${SM[id].name}</div>`;
-    b.onclick=()=>toggleSense(id);
-    g.appendChild(b);
-  });
-  nextSubject();
+    const g = document.getElementById('btns');
+    g.innerHTML = '';
+    [1,2,3,4,5].forEach(id => {
+        const b = document.createElement('button');
+        b.className = 'sense-btn';
+        b.innerHTML = SENSES[id].i + '<br>' + SENSES[id].n;
+        b.onclick = () => {
+            if(sel.includes(id)) sel = sel.filter(x=>x!==id);
+            else if(sel.length < 2) sel.push(id);
+            update();
+        };
+        b.id = 'b' + id;
+        g.appendChild(b);
+    });
+    nextSubject();
 }
 
 function nextSubject(){
-  CS=SUBJECTS[Math.floor(Math.random()*SUBJECTS.length)];
-  document.getElementById('cat-tag').textContent=CS.cat;
-  document.getElementById('subj-emoji').textContent=CS.e;
-  document.getElementById('subj-name').textContent=CS.name;
-  document.getElementById('subj-zhuyin').textContent=CS.z;
-  clearAll();
+    CS = SUBJECTS[Math.floor(Math.random()*SUBJECTS.length)];
+    document.getElementById('e').innerText = CS.e;
+    document.getElementById('n').innerText = CS.n;
+    document.getElementById('z').innerText = CS.z;
+    sel = []; heartOn = false; slots = {};
+    update();
 }
 
-function toggleSense(id){
-  if(sel5.includes(id)) sel5=sel5.filter(x=>x!==id);
-  else if(sel5.length<2) sel5.push(id);
-  updateUI();
-}
+function toggleHeart(){ heartOn = !heartOn; update(); }
 
-function toggleHeart(){ heartOn=!heartOn; updateUI(); }
-
-function updateUI(){
-  const btns=document.querySelectorAll('.sense-btn');
-  [1,2,3,4,5].forEach((id,i)=>btns[i].className='sense-btn'+(sel5.includes(id)?' sel':'')+(sel5.length>=2&&!sel5.includes(id)?' maxed':''));
-  document.getElementById('hbtn').className='hbtn'+(heartOn?' sel':'');
-  document.getElementById('dot1').className='sdot'+(sel5.length>=2?' done':' cur');
-  document.getElementById('dot2').className='sdot'+(sel5.length>=2? (heartOn?' done':' cur') : '');
-  document.getElementById('dot3').className='sdot'+(sel5.length>=2 && heartOn?' cur':'');
-  
-  const p=document.getElementById('slots-panel'), r=document.getElementById('slot-rows');
-  if(sel5.length<2||!heartOn){ p.style.display='none'; } else {
-    p.style.display='block'; r.innerHTML='';
-    [...sel5, 6].forEach(id=>{
-      const row=document.createElement('div'); row.className='slot-row';
-      row.innerHTML=`<span class="slot-lbl">${SM[id].name}：</span>` + 
-        (slots[id]?`<div class="slot-filled" onclick="clearSlot(${id})">${slots[id]} <span>✕</span></div>`
-                  :`<div class="slot-ph">點選下方語詞...</div>`);
-      r.appendChild(row);
+function update(){
+    [1,2,3,4,5].forEach(id => {
+        document.getElementById('b'+id).className = 'sense-btn' + (sel.includes(id)?' sel':'');
     });
-  }
-  renderChips();
-  renderPreview();
+    document.getElementById('hb').className = 'sense-btn' + (heartOn?' sel':'');
+
+    const sp = document.getElementById('slot-panel');
+    const sl = document.getElementById('slot-list');
+    if(sel.length === 2 && heartOn){
+        sp.style.display = 'block';
+        sl.innerHTML = '';
+        [...sel, 6].forEach(id => {
+            sl.innerHTML += `<div class="slot-row"><b>${SENSES[id].n}：</b> ${slots[id] || '<span style="color:#ccc">點選詞語...</span>'}</div>`;
+        });
+    } else {
+        sp.style.display = 'none';
+    }
+    renderChips();
+    renderPreview();
 }
 
 function renderChips(){
-  const c=document.getElementById('hchips'), h=document.getElementById('hlabel');
-  c.innerHTML='';
-  let activeId = null;
-  if(sel5.length<2){ h.textContent='💡 請先從上方選擇兩項感官'; return; }
-  for(let id of [...sel5, 6]){ if(!slots[id]){ activeId=id; break; } }
-  
-  if(!activeId){ h.textContent='✅ 語詞已選好！點擊上方✕可取消'; return; }
-  h.textContent=`💡 請選擇「${SM[activeId].name}」語詞：`;
-  const list = activeId===6?CH6:(CS.data[activeId]||[]);
-  if(list.length===0){
-    const d=document.createElement('div'); d.className='chip'; d.textContent='（暫無建議，請點✕換一項感覺）';
-    c.appendChild(d);
-  } else {
-    list.forEach(item=>{
-      const d=document.createElement('div'); d.className='chip'; d.textContent=item.w;
-      d.onclick=()=>{ slots[activeId]=item.w; slotTypes[activeId]=item.t; updateUI(); };
-      c.appendChild(d);
+    const c = document.getElementById('chips');
+    const h = document.getElementById('hlabel');
+    c.innerHTML = '';
+    if(sel.length < 2){ h.innerText = '💡 請先選兩項感官按鈕'; return; }
+    if(!heartOn){ h.innerText = '💡 還要點選心覺按鈕喔'; return; }
+
+    let activeId = null;
+    for(let id of [...sel, 6]){ if(!slots[id]){ activeId = id; break; } }
+
+    if(!activeId){ h.innerText = '✅ 填好了！'; return; }
+    h.innerText = '💡 請選擇「' + SENSES[activeId].n + '」語詞：';
+    const list = activeId === 6 ? CH6 : (CS.d[activeId] || []);
+    list.forEach(item => {
+        const d = document.createElement('div');
+        d.className = 'chip';
+        d.innerText = item.w;
+        d.onclick = () => { slots[activeId] = item.w; update(); };
+        c.appendChild(d);
     });
-  }
 }
 
 function renderPreview(){
-  const p=document.getElementById('sent-preview'), btn=document.getElementById('sub-btn');
-  const n=CS.name, w1=slots[sel5[0]], w2=slots[sel5[1]], wH=slots[6];
-  if(!w1||!w2||!wH){ 
-    p.innerHTML='<span class="blank">句子預覽：填完三個語詞後就會出現喔！</span>';
-    btn.disabled=true;
-  } else {
-    let s = (slotTypes[sel5[0]]==='env'?'在環境中':'') + w1 + n + '，' + w2 + '，' + wH + '。';
-    p.textContent=s; btn.disabled=false;
-  }
+    const p = document.getElementById('pv');
+    const btn = document.getElementById('sb');
+    if(sel.length===2 && heartOn && slots[sel[0]] && slots[sel[1]] && slots[6]){
+        p.innerText = `${slots[sel[0]]}${CS.n}，${slots[sel[1]]}，${slots[6]}。`;
+        btn.disabled = false;
+    } else {
+        p.innerHTML = '<span style="color:#ccc">選好感官並填入詞語後，句子會出現在這裡...</span>';
+        btn.disabled = true;
+    }
 }
 
-function clearSlot(id){ delete slots[id]; updateUI(); }
-function clearAll(){ sel5=[]; heartOn=false; slots={}; updateUI(); }
-function submitSentence(){
-  score++; document.getElementById('score-display').textContent=score+' 句 ⭐';
-  const s = document.getElementById('sent-preview').textContent;
-  document.getElementById('msent').textContent=s;
-  document.getElementById('modal').className='modal-ov show';
-  if('speechSynthesis' in window){
-    const u = new SpeechSynthesisUtterance(s); u.lang='zh-TW'; speechSynthesis.speak(u);
-  }
-}
-function closeModal(){ document.getElementById('modal').className='modal-ov'; nextSubject(); }
-
-window.onload=init;
+init();
 </script>
+
 </body>
 </html>
