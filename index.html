@@ -20,142 +20,107 @@ html,body{font-family:'PingFang TC','Heiti TC',sans-serif;background:var(--cream
 .subj-name{font-size:20px;font-weight:700}
 .subj-zhuyin{font-size:12px;color:var(--text-soft)}
 .next-btn{background:#fff;border:1.5px solid #ccc;border-radius:12px;padding:4px 12px;font-size:12px;cursor:pointer;color:var(--text-mid);position:absolute;top:11px;right:14px;font-family:inherit;touch-action:manipulation}
-.next-btn:active{background:var(--yellow)}
 .steps{display:flex;align-items:center;justify-content:center;gap:6px;margin:4px 0 10px}
 .step{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--text-soft)}
-.sdot{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;border:2px solid #ddd;background:#fff;color:#ccc;transition:.2s;flex-shrink:0}
+.sdot{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;border:2px solid #ddd;background:#fff;color:#ccc;transition:.2s}
 .sdot.done{background:#4CAF50;border-color:#4CAF50;color:#fff}
 .sdot.cur{background:var(--btn);border-color:var(--btn);color:#fff}
-.sarr{color:#ccc;font-size:11px}
 .sec-label{font-size:13px;font-weight:700;color:var(--text-mid);margin:0 0 7px;padding-left:2px}
 .sense-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:10px}
 .sense-btn{border:none;border-radius:14px;padding:9px 4px 8px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;font-family:inherit;transition:.1s;touch-action:manipulation;position:relative}
-.sense-btn:active{transform:scale(0.96)}
 .sense-btn.sel{box-shadow:0 0 0 3px var(--btn)}
 .sense-btn.maxed{opacity:.38;pointer-events:none}
-.scheck{position:absolute;top:4px;right:6px;font-size:12px;display:none}
-.sense-btn.sel .scheck{display:block}
 .sicon{font-size:19px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.75)}
 .sname{font-size:12px;font-weight:700}
-.ssub{font-size:9px;opacity:.75}
-.s-rating{font-size:9px;font-weight:700;margin-top:2px;display:block;letter-spacing:0}
-.sense-btn.sel .s-rating{opacity:.9}
-.heart-row{margin-bottom:10px}
-.hbtn{width:100%;border:none;border-radius:14px;padding:11px 14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;font-family:inherit;touch-action:manipulation;transition:.1s}
-.hbtn:active:not(.hlocked){transform:scale(0.98)}
+.hbtn{width:100%;border:none;border-radius:14px;padding:11px 14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;font-family:inherit;touch-action:manipulation;background:var(--yellow)}
 .hbtn.sel{box-shadow:0 0 0 3px var(--btn)}
-.hbtn.hlocked{opacity:.38;cursor:default}
 .slots-panel{background:#fff;border-radius:18px;border:2px solid #A5D6A7;padding:12px 14px;margin-bottom:10px}
-.slots-label{font-size:12px;color:var(--text-soft);margin-bottom:9px}
-.slot-rows{display:flex;flex-direction:column;gap:8px}
-.slot-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.slot-lbl{font-size:12px;font-weight:700;min-width:40px;flex-shrink:0}
-.slot-ph{background:#F5F5F5;border:1.5px dashed #ccc;border-radius:10px;padding:5px 11px;font-size:13px;color:#bbb}
-.slot-filled{border-radius:10px;padding:5px 11px;font-size:13px;font-weight:500;display:flex;align-items:center;gap:5px;cursor:pointer;border:1.5px solid transparent}
-.slot-x{font-size:11px;opacity:.55;font-weight:700}
-.hint-panel{background:#fff;border-radius:16px;border:1.5px dashed #FFB74D;padding:10px 12px;margin-bottom:10px}
-.htabs{display:flex;gap:5px;margin-bottom:8px;flex-wrap:wrap}
-.htab{border-radius:8px;padding:3px 10px;font-size:12px;cursor:pointer;font-family:inherit;touch-action:manipulation;border:1.5px solid #ddd;background:#fff}
+.slot-row{display:flex;align-items:center;gap:6px;margin-bottom:8px}
+.slot-lbl{font-size:12px;font-weight:700;min-width:45px}
+.slot-ph{background:#F5F5F5;border:1.5px dashed #ccc;border-radius:10px;padding:5px 11px;font-size:13px;color:#bbb;flex:1}
+.slot-filled{background:var(--green);border-radius:10px;padding:5px 11px;font-size:13px;font-weight:700;display:flex;justify-content:space-between;flex:1;cursor:pointer}
+.hint-panel{background:#fff;border-radius:16px;border:1.5px dashed #FFB74D;padding:10px 12px;margin-bottom:10px;min-height:80px}
 .hlabel{font-size:11px;color:var(--text-soft);margin-bottom:6px}
-.hchips{display:flex;flex-wrap:wrap;gap:5px}
-.chip{border-radius:10px;padding:5px 10px;font-size:13px;cursor:pointer;line-height:1.4;touch-action:manipulation;-webkit-user-select:none;user-select:none;display:inline-block;border:1.5px solid transparent;transition:.1s;position:relative}
-.chip.rec{background:#FFF3C4;color:#5A4000}
-.chip.rec:active{border-color:var(--btn);background:#FFE88A}
-.chip.chal{background:#F0F0F0;color:#777}
-.chip.chal:active{border-color:#999;background:#E8E8E8}
-.chip.used{background:#E8E8E8;color:#aaa;text-decoration:line-through;pointer-events:none}
-.chip-z{font-size:9px;display:block;margin-top:1px}
-.chip-tip{display:none;position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:#333;color:#fff;font-size:11px;border-radius:8px;padding:5px 9px;z-index:10;pointer-events:none;line-height:1.4;text-align:center;width:140px;white-space:normal}
-.chip:hover .chip-tip{display:block}
+.hchips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border-radius:10px;padding:6px 12px;font-size:13px;cursor:pointer;background:#FFF3C4;color:#5A4000;border:1.5px solid transparent}
+.chip:active{border-color:var(--btn)}
 .sent-box{background:#fff;border-radius:16px;border:2px solid #BBDEFB;padding:11px 14px;margin-bottom:9px}
-.sent-box label{font-size:12px;color:var(--text-soft);display:block;margin-bottom:5px}
-.sent-preview{font-size:17px;font-weight:500;letter-spacing:1px;line-height:1.9;min-height:36px;word-break:break-all}
-.sent-preview .blank{color:#ccc;font-style:italic}
-.sent-preview .fw{color:#E0694A;font-weight:700}
-.controls{display:flex;gap:7px;margin-bottom:8px;flex-wrap:wrap}
-.clr-btn{padding:12px 14px;border-radius:14px;border:1.5px solid #ddd;background:#fff;font-family:inherit;font-size:13px;cursor:pointer;color:var(--text-mid);touch-action:manipulation}
-.sub-btn{padding:12px 16px;border-radius:14px;border:none;background:#4CAF50;color:#fff;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;flex:1}
+.sent-preview{font-size:17px;font-weight:500;line-height:1.8;min-height:36px}
+.blank{color:#ccc;font-style:italic}
+.controls{display:flex;gap:7px}
+.sub-btn{padding:12px 16px;border-radius:14px;border:none;background:#4CAF50;color:#fff;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;flex:1}
 .sub-btn:disabled{background:#ccc}
 .modal-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:100;align-items:center;justify-content:center;padding:16px}
 .modal-ov.show{display:flex}
-.modal{background:var(--cream);border-radius:22px;padding:24px 18px;max-width:340px;width:100%;text-align:center;border:3px solid var(--yellow)}
-.msent{background:#fff;border-radius:12px;padding:12px;font-size:17px;margin-bottom:10px;border:2px solid #A5D6A7;line-height:1.8}
-.mbtn{background:var(--btn);color:#fff;border:none;border-radius:13px;padding:11px 24px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer}
-.mfeedback{border-radius:14px;padding:12px 14px;margin:10px 0;text-align:left;font-size:13px;line-height:1.7;display:none}
-.mfeedback.warn{background:#FFF8E1;border:1.5px solid #FFD54F;color:#6D4C00;display:block}
-.mfeedback.good{background:#E8F5E9;border:1.5px solid #81C784;color:#1B5E20;display:block}
+.modal{background:#fff;border-radius:22px;padding:24px 18px;max-width:340px;width:100%;text-align:center}
+.mbtn{background:var(--btn);color:#fff;border:none;border-radius:13px;padding:11px 24px;font-size:15px;font-weight:700;cursor:pointer;margin-top:10px}
 </style>
 </head>
 <body>
 <div id="app">
   <div class="header">
-    <h1>🌟 六感六覺作文練習 🌟</h1>
-    <p>選三種覺，組出一句美麗的句子！</p>
+    <h1>🌟 六感作文練習 🌟</h1>
+    <p>選選看，你會怎麼描寫它？</p>
   </div>
   <div class="score-bar">
     <span>已完成句子</span>
     <span class="score-badge" id="score-display">0 句 ⭐</span>
   </div>
   <div class="picture-card">
-    <span class="cat-tag" id="cat-tag">植物</span>
+    <span class="cat-tag" id="cat-tag">載入中...</span>
     <button class="next-btn" onclick="nextSubject()">換一題 ↻</button>
-    <span class="subj-emoji" id="subj-emoji">🌹</span>
-    <div class="subj-name" id="subj-name">玫瑰花</div>
-    <div class="subj-zhuyin" id="subj-zhuyin">ㄇㄟˊ ㄍㄨㄟ ㄏㄨㄚ</div>
+    <span class="subj-emoji" id="subj-emoji">❓</span>
+    <div class="subj-name" id="subj-name">載入中...</div>
+    <div class="subj-zhuyin" id="subj-zhuyin"></div>
   </div>
   <div class="steps">
-    <div class="step"><div class="sdot cur" id="dot1">1</div><span>選兩種感覺</span></div>
-    <div class="sarr">›</div>
-    <div class="step"><div class="sdot" id="dot2">2</div><span>加上心覺</span></div>
-    <div class="sarr">›</div>
-    <div class="step"><div class="sdot" id="dot3">3</div><span>填入語詞</span></div>
+    <div class="step"><div class="sdot cur" id="dot1">1</div><span>感官</span></div>
+    <div class="step"><div class="sdot" id="dot2">2</div><span>心覺</span></div>
+    <div class="step"><div class="sdot" id="dot3">3</div><span>寫作</span></div>
   </div>
-  <div class="sec-label">步驟① 選兩種感覺：</div>
+  <div class="sec-label">① 選兩項感官：</div>
   <div class="sense-grid" id="sense-grid"></div>
-  <div class="sec-label">步驟② 心覺（必選）：</div>
-  <div class="heart-row" id="heart-row"></div>
+  <div class="sec-label">② 選一項心覺：</div>
+  <div class="heart-row"><button class="hbtn" id="hbtn" onclick="toggleHeart()">💖 心覺 (必選)</button></div>
   <div class="slots-panel" id="slots-panel" style="display:none">
-    <div class="slots-label">步驟③ 分別填入語詞：</div>
-    <div class="slot-rows" id="slot-rows"></div>
+    <div class="sec-label">③ 填入語詞：</div>
+    <div id="slot-rows"></div>
   </div>
   <div class="hint-panel">
-    <div class="hlabel" id="hlabel">💡 點選上方感覺按鈕，語詞會出現在這裡</div>
+    <div class="hlabel" id="hlabel">點選感官按鈕後，這裡會出現建議語詞</div>
     <div class="hchips" id="hchips"></div>
   </div>
   <div class="sent-box">
-    <label>📝 句子預覽：</label>
-    <div class="sent-preview" id="sent-preview"><span class="blank">選好感覺並填入語詞後，句子會出現在這裡…</span></div>
+    <div class="sent-preview" id="sent-preview"><span class="blank">請先選擇感覺並填寫語詞...</span></div>
   </div>
   <div class="controls">
-    <button class="clr-btn" onclick="clearAll()">重新來過</button>
-    <button class="sub-btn" id="sub-btn" onclick="submitSentence()" disabled>完成 ✓</button>
+    <button class="sub-btn" id="sub-btn" onclick="submitSentence()" disabled>完成練習 ✓</button>
   </div>
 </div>
 
 <div class="modal-ov" id="modal">
   <div class="modal">
-    <div class="mstars">⭐</div>
-    <h2>太棒了！</h2>
-    <div class="msent" id="msent"></div>
-    <div class="mfeedback" id="mfeedback"></div>
-    <button class="mbtn" onclick="closeModal()">繼續下一題 →</button>
+    <h2>🎉 太棒了！</h2>
+    <div style="margin:15px 0; font-size:18px; line-height:1.6;" id="msent"></div>
+    <button class="mbtn" onclick="closeModal()">下一題 →</button>
   </div>
 </div>
 
 <script>
-const SM={1:{name:"視覺",icon:"👁️",color:"#D4EDDA",lbl:"視覺詞"},2:{name:"聽覺",icon:"👂",color:"#DBEAFE",lbl:"聽覺詞"},3:{name:"嗅覺",icon:"👃",color:"#FEF9C3",lbl:"嗅覺詞"},4:{name:"味覺",icon:"👅",color:"#FCE4EC",lbl:"味覺詞"},5:{name:"觸覺",icon:"✋",color:"#EDE7F6",lbl:"觸覺詞"},6:{name:"心覺",icon:"💖",color:"#FFE0B2",lbl:"心覺詞"}};
+const SM={1:{name:"視覺",icon:"👁️",color:"#D4EDDA"},2:{name:"聽覺",icon:"👂",color:"#DBEAFE"},3:{name:"嗅覺",icon:"👃",color:"#FEF9C3"},4:{name:"味覺",icon:"👅",color:"#FCE4EC"},5:{name:"觸覺",icon:"✋",color:"#EDE7F6"},6:{name:"心覺",icon:"💖",color:"#FFE0B2"}};
 const SUBJECTS=[
-  {name:"玫瑰花",z:"ㄇㄟˊ ㄍㄨㄟ ㄏㄨㄚ",cat:"植物",e:"🌹",rating:{1:3,2:1,3:3,4:0,5:2},rec:{1:[{w:"紅紅的",t:"adj"},{w:"漂亮",t:"pred"}],3:[{w:"香香的",t:"adj"}],5:[{w:"刺刺的",t:"adj"}]},chal:{4:[{w:"甜甜的",t:"adj"}]}},
-  {name:"草莓",z:"ㄘㄠˇ ㄇㄟˊ",cat:"植物",e:"🍓",rating:{1:3,2:0,3:3,4:3,5:2},rec:{1:[{w:"紅紅的",t:"adj"}],4:[{w:"酸酸甜甜的",t:"adj"}]}},
-  {name:"月亮",z:"ㄩㄝˋ ㄌㄧㄤˋ",cat:"自然",e:"🌙",rating:{1:3,2:1,3:0,4:0,5:0},rec:{1:[{w:"彎彎的",t:"adj"},{w:"亮亮的",t:"adj"}],2:[{w:"安靜",t:"env"}]}}
+  {name:"玫瑰花",z:"ㄇㄟˊ ㄍㄨㄟ ㄏㄨㄚ",cat:"植物",e:"🌹",data:{1:[{w:"紅通通的",t:"adj"}],3:[{w:"香噴噴的",t:"adj"}],5:[{w:"刺刺的",t:"adj"}]}},
+  {name:"草莓",z:"ㄘㄠˇ ㄇㄟˊ",cat:"水果",e:"🍓",data:{1:[{w:"亮紅色的",t:"adj"}],3:[{w:"甜香的",t:"adj"}],4:[{w:"酸酸甜甜的",t:"adj"}]}},
+  {name:"月亮",z:"ㄩㄝˋ ㄌㄧㄤˋ",cat:"自然",e:"🌙",data:{1:[{w:"彎彎的",t:"adj"},{w:"銀色的",t:"adj"}],2:[{w:"靜悄悄的",t:"env"}]}},
+  {name:"鯨魚",z:"ㄐㄧㄥ ㄩˊ",cat:"動物",e:"🐋",data:{1:[{w:"巨大的",t:"adj"}],2:[{w:"噴水聲嘶嘶叫",t:"adj"}],5:[{w:"光滑的",t:"adj"}]}},
+  {name:"熱牛奶",z:"ㄖㄜˋ ㄋㄧㄡˊ ㄋㄞˇ",cat:"食物",e:"🥛",data:{3:[{w:"濃濃奶香",t:"adj"}],4:[{w:"暖呼呼的",t:"adj"}],5:[{w:"溫熱的",t:"adj"}]}}
 ];
-const CH6=[{w:"讓我覺得很開心",t:"heart"},{w:"讓我覺得好幸福",t:"heart"},{w:"我好喜歡",t:"heart"}];
+const CH6=[{w:"讓我覺得很幸福",t:"h"},{w:"我好喜歡它",t:"h"},{w:"讓我心跳加快",t:"h"}];
 
 let CS=null, sel5=[], heartOn=false, slots={}, slotTypes={}, score=0;
 
 function init(){
   const g=document.getElementById('sense-grid');
-  g.innerHTML='';
   [1,2,3,4,5].forEach(id=>{
     const b=document.createElement('button');
     b.className='sense-btn'; b.style.background=SM[id].color;
@@ -163,13 +128,6 @@ function init(){
     b.onclick=()=>toggleSense(id);
     g.appendChild(b);
   });
-  const h=document.getElementById('heart-row');
-  h.innerHTML='';
-  const hb=document.createElement('button');
-  hb.className='hbtn'; hb.style.background=SM[6].color;
-  hb.innerHTML=`<span>${SM[6].icon} ${SM[6].name}</span>`;
-  hb.onclick=()=>toggleHeart();
-  h.appendChild(hb);
   nextSubject();
 }
 
@@ -192,76 +150,75 @@ function toggleHeart(){ heartOn=!heartOn; updateUI(); }
 
 function updateUI(){
   const btns=document.querySelectorAll('.sense-btn');
-  [1,2,3,4,5].forEach((id,i)=>{
-    btns[i].className='sense-btn'+(sel5.includes(id)?' sel':'')+(sel5.length>=2&&!sel5.includes(id)?' maxed':'');
-  });
-  document.querySelector('.hbtn').className='hbtn'+(heartOn?' sel':'');
+  [1,2,3,4,5].forEach((id,i)=>btns[i].className='sense-btn'+(sel5.includes(id)?' sel':'')+(sel5.length>=2&&!sel5.includes(id)?' maxed':''));
+  document.getElementById('hbtn').className='hbtn'+(heartOn?' sel':'');
   document.getElementById('dot1').className='sdot'+(sel5.length>=2?' done':' cur');
   document.getElementById('dot2').className='sdot'+(sel5.length>=2? (heartOn?' done':' cur') : '');
   document.getElementById('dot3').className='sdot'+(sel5.length>=2 && heartOn?' cur':'');
   
-  renderSlots();
+  const p=document.getElementById('slots-panel'), r=document.getElementById('slot-rows');
+  if(sel5.length<2||!heartOn){ p.style.display='none'; } else {
+    p.style.display='block'; r.innerHTML='';
+    [...sel5, 6].forEach(id=>{
+      const row=document.createElement('div'); row.className='slot-row';
+      row.innerHTML=`<span class="slot-lbl">${SM[id].name}：</span>` + 
+        (slots[id]?`<div class="slot-filled" onclick="clearSlot(${id})">${slots[id]} <span>✕</span></div>`
+                  :`<div class="slot-ph">點選下方語詞...</div>`);
+      r.appendChild(row);
+    });
+  }
   renderChips();
   renderPreview();
 }
 
-function renderSlots(){
-  const p=document.getElementById('slots-panel'), r=document.getElementById('slot-rows');
-  if(sel5.length<2||!heartOn){ p.style.display='none'; return; }
-  p.style.display='block'; r.innerHTML='';
-  [...sel5, 6].forEach(id=>{
-    const row=document.createElement('div'); row.className='slot-row';
-    const val=slots[id];
-    row.innerHTML=`<span class="slot-lbl">${SM[id].name}：</span>` + 
-      (val?`<div class="slot-filled" onclick="clearSlot(${id})">${val} <span class="slot-x">✕</span></div>`
-          :`<div class="slot-ph">請選擇${SM[id].name}語詞...</div>`);
-    r.appendChild(row);
-  });
-}
-
 function renderChips(){
-  const c=document.getElementById('hchips'); c.innerHTML='';
-  const activeId = (sel5.length<2)?null : (!slots[sel5[0]]?sel5[0] : (!slots[sel5[1]]?sel5[1] : (heartOn && !slots[6]?6:null)));
-  if(!activeId){ document.getElementById('hlabel').textContent='✅ 已選好所有語詞！'; return; }
-  document.getElementById('hlabel').textContent=`💡 請選擇「${SM[activeId].name}」語詞：`;
-  const list = activeId===6?CH6 : (CS.rec[activeId]||[]).concat(CS.chal[activeId]||[]);
-  list.forEach(item=>{
-    const div=document.createElement('div'); div.className='chip rec';
-    div.innerHTML=item.w;
-    div.onclick=()=>{ slots[activeId]=item.w; slotTypes[activeId]=item.t; updateUI(); };
-    c.appendChild(div);
-  });
+  const c=document.getElementById('hchips'), h=document.getElementById('hlabel');
+  c.innerHTML='';
+  let activeId = null;
+  if(sel5.length<2){ h.textContent='💡 請先從上方選擇兩項感官'; return; }
+  for(let id of [...sel5, 6]){ if(!slots[id]){ activeId=id; break; } }
+  
+  if(!activeId){ h.textContent='✅ 語詞已選好！點擊上方✕可取消'; return; }
+  h.textContent=`💡 請選擇「${SM[activeId].name}」語詞：`;
+  const list = activeId===6?CH6:(CS.data[activeId]||[]);
+  if(list.length===0){
+    const d=document.createElement('div'); d.className='chip'; d.textContent='（暫無建議，請點✕換一項感覺）';
+    c.appendChild(d);
+  } else {
+    list.forEach(item=>{
+      const d=document.createElement('div'); d.className='chip'; d.textContent=item.w;
+      d.onclick=()=>{ slots[activeId]=item.w; slotTypes[activeId]=item.t; updateUI(); };
+      c.appendChild(d);
+    });
+  }
 }
 
 function renderPreview(){
-  const p=document.getElementById('sent-preview'), s=buildSentence();
-  p.innerHTML = s || '<span class="blank">選好語詞後，句子會出現在這裡…</span>';
-  document.getElementById('sub-btn').disabled = !s || s.includes('〔');
-}
-
-function buildSentence(){
-  if(sel5.length<2 || !heartOn) return null;
+  const p=document.getElementById('sent-preview'), btn=document.getElementById('sub-btn');
   const n=CS.name, w1=slots[sel5[0]], w2=slots[sel5[1]], wH=slots[6];
-  if(!w1 || !w2 || !wH) return `這${n}${w1||'〔...〕'}，${w2||'〔...〕'}，${wH||'〔...〕'}。`;
-  return `${w1}${n}，${w2}，${wH}。`;
+  if(!w1||!w2||!wH){ 
+    p.innerHTML='<span class="blank">句子預覽：填完三個語詞後就會出現喔！</span>';
+    btn.disabled=true;
+  } else {
+    let s = (slotTypes[sel5[0]]==='env'?'在環境中':'') + w1 + n + '，' + w2 + '，' + wH + '。';
+    p.textContent=s; btn.disabled=false;
+  }
 }
 
 function clearSlot(id){ delete slots[id]; updateUI(); }
 function clearAll(){ sel5=[]; heartOn=false; slots={}; updateUI(); }
-
 function submitSentence(){
-  const s=buildSentence(); score++;
-  document.getElementById('score-display').textContent=score+' 句 ⭐';
+  score++; document.getElementById('score-display').textContent=score+' 句 ⭐';
+  const s = document.getElementById('sent-preview').textContent;
   document.getElementById('msent').textContent=s;
-  const rating = sel5.reduce((acc,id)=>acc+(CS.rating[id]||0),0);
-  const fb=document.getElementById('mfeedback');
-  fb.className='mfeedback '+(rating>3?'good':'warn');
-  fb.textContent=rating>3?'這是一句很棒的描寫！':'試試看選用顏色或氣味，句子會更生動喔！';
   document.getElementById('modal').className='modal-ov show';
+  if('speechSynthesis' in window){
+    const u = new SpeechSynthesisUtterance(s); u.lang='zh-TW'; speechSynthesis.speak(u);
+  }
 }
 function closeModal(){ document.getElementById('modal').className='modal-ov'; nextSubject(); }
 
-init();
+window.onload=init;
 </script>
 </body>
 </html>
