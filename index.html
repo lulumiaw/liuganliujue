@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>六感六覺作文練習</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <div class="header">
+    <h1>&#127775; 六感六覺作文練習 &#127775;</h1>
+    <p>選三種覺（兩種感覺＋心覺），組出一句美麗的句子！</p>
+  </div>
+  <div class="score-bar">
+    <span>已完成句子</span>
+    <span class="score-badge" id="score-display">0 句 ⭐</span>
+  </div>
+  <div class="picture-card">
+    <span class="cat-tag" id="cat-tag"></span>
+    <button class="next-btn" onclick="nextSubject()">換一題 ↻</button>
+    <span class="subj-emoji" id="subj-emoji"></span>
+    <div class="subj-name" id="subj-name"></div>
+    <div class="subj-zhuyin" id="subj-zhuyin"></div>
+  </div>
+  <div class="steps">
+    <div class="step"><div class="sdot cur" id="dot1">1</div><span>選兩種感覺</span></div>
+    <div class="sarr">›</div>
+    <div class="step"><div class="sdot" id="dot2">2</div><span>加上心覺</span></div>
+    <div class="sarr">›</div>
+    <div class="step"><div class="sdot" id="dot3">3</div><span>填入語詞</span></div>
+  </div>
+  <div class="sec-label">步驟① 選兩種感覺（五種都可以點，自己判斷哪兩種最適合）：</div>
+  <div class="sense-grid" id="sense-grid"></div>
+  <div class="sec-label">步驟② 心覺（必選）：</div>
+  <div class="heart-row" id="heart-row"></div>
+  <div class="slots-panel" id="slots-panel" style="display:none">
+    <div class="slots-label">步驟③ 分別為每種感覺選一個語詞，填入句子：</div>
+    <div class="slot-rows" id="slot-rows"></div>
+    <div class="ellipsis-row" id="ellipsis-row" style="display:none">
+      <span class="ellipsis-label">💭 讓我想到……</span>
+      <input class="ellipsis-input" id="ellipsis-input" placeholder="想到什麼呢？" maxlength="20" oninput="updateEllipsis()">
+    </div>
+  </div>
+  <div class="hint-panel">
+    <div class="htabs" id="htabs"></div>
+    <div class="hint-legend" id="hint-legend"></div>
+    <div class="hlabel" id="hlabel">💡 請先點上方的感覺按鈕，語詞就會出現在這裡</div>
+    <div class="hchips" id="hchips"></div>
+    <div class="custom-word-row" id="custom-word-row" style="display:none">
+      <span style="font-size:11px;color:var(--text-soft);width:100%">➕ 加入自己想到的語詞：</span>
+      <input class="custom-word-input" id="custom-word-input" placeholder="輸入語詞…" maxlength="12">
+      <button class="custom-mic-btn" id="custom-mic-btn" onclick="toggleCustomMic()" title="語音輸入">🎤</button>
+      <button class="custom-add-btn" onclick="addCustomWord()">加入</button>
+    </div>
+  </div>
+  <div class="sent-box">
+    <label>📝 句子預覽：</label>
+    <div class="frame-switch" id="frame-switch" style="display:none"></div>
+    <div class="sent-preview" id="sent-preview"><span class="blank">選好感覺並填入語詞後，句子會出現在這裡…</span></div>
+  </div>
+  <div class="mic-out" id="mic-out"></div>
+  <div class="nospeech" id="nospeech">⚠️ 語音功能需用 <strong>Chrome 瀏覽器</strong>，或直接用語詞卡片組句子！</div>
+  <div class="controls">
+    <button class="mic-btn idle" id="mic-btn" onclick="toggleMic()" disabled>🎤 朗讀句子</button>
+    <button class="clr-btn" onclick="clearAll()">重新來過</button>
+    <button class="sub-btn" id="sub-btn" onclick="submitSentence()" disabled>完成 ✓</button>
+  </div>
+  <p class="tip" id="tip-text"></p>
+</div>
+<div class="modal-ov" id="modal">
+  <div class="modal">
+    <div class="mstars" id="mstars">⭐</div>
+    <h2 id="modal-title">太棒了！</h2>
+    <p style="font-size:13px;color:var(--text-mid);margin-bottom:8px" id="modal-subtitle">你說出了一句很美的句子：</p>
+    <div class="msent" id="msent"></div>
+    <button class="tts-btn" id="tts-btn" onclick="toggleTTS()" disabled>🔊 聽聽看這句話</button>
+    <div class="mfeedback" id="mfeedback"></div>
+    <div class="msuggest" id="msuggest">
+      <div class="msuggest-label">✨ 改寫建議：</div>
+      <div id="msuggest-text"></div>
+    </div>
+    <p class="mpraise" id="mpraise"></p>
+    <div class="mbtn-row">
+      <button class="mbtn-use" id="mbtn-use" onclick="useSuggestion()" style="display:none">使用建議句子 ✓</button>
+      <button class="mbtn" onclick="closeModal()">繼續下一題 →</button>
+    </div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
