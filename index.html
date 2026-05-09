@@ -701,8 +701,7 @@ function evaluateSentence(sentence) {
     });
     const recIds = Object.entries(CS.senseRating||{}).filter(([k,v])=>v>=2&&k!='6').map(([k])=>Number(k));
     const recNames = recIds.map(id=>SM[id].name).join('、');
-    const hint = tips.join(' ') + (recNames?`
-💡 試試看改用：${recNames}！`:'');
+    const hint = tips.join(' ') + (recNames?' 💡 試試看改用：'+recNames+'！':'');
     const suggestion = CS.suggestSentence || null;
     return {type:'chal', hint, suggestion, chalWords:badSenses};
   }
@@ -715,9 +714,7 @@ function evaluateSentence(sentence) {
   }))];
   const recIds = Object.entries(CS.senseRating||{}).filter(([k,v])=>v>=2&&k!='6').map(([k])=>Number(k));
   const recNames = recIds.map(id=>SM[id].name).join('、');
-  const hint = tips.join('
-') + (recNames?`
-💡 這題最適合用：${recNames}！`:'');
+  const hint = tips.join(' ') + (recNames?' 💡 這題最適合用：'+recNames+'！':'');
   const suggestion = buildSuggestion(chalWords, sentence);
   return {type:'chal', hint, suggestion, chalWords};
 }
